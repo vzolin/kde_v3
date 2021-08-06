@@ -1,1 +1,1064 @@
-[]
+[
+    {
+        "id": "8b0664b4.748478",
+        "type": "tab",
+        "label": "Orchestrador",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "81973c97.e573",
+        "type": "tab",
+        "label": "Globals",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e9b9889e.0f6988",
+        "type": "tab",
+        "label": "APIs JWT Login",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6f5633be.6bb87c",
+        "type": "subflow",
+        "name": "API Call",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "1d632ba7.13a794"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1360,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "41e7a7a8.60f618",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1360,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "41e7a7a8.60f618",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "75970f74.ba2f6",
+        "type": "subflow",
+        "name": "BVS",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 220,
+                "y": 380,
+                "wires": [
+                    {
+                        "id": "bce67bb8.4fcf48"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1100,
+                "y": 380,
+                "wires": [
+                    {
+                        "id": "a01888f9.b274d8",
+                        "port": 0
+                    },
+                    {
+                        "id": "2aae413.53d74be",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "dbaaa391.8efa3",
+        "type": "group",
+        "z": "8b0664b4.748478",
+        "style": {
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
+            "label": true,
+            "label-position": "nw",
+            "color": "#a4a4a4"
+        },
+        "nodes": [
+            "3185aee6.aa0c92",
+            "77891a85.5df814",
+            "1ba0d62b.9052ba"
+        ],
+        "x": 54,
+        "y": 459,
+        "w": 812,
+        "h": 82
+    },
+    {
+        "id": "4d6c3af5.0e7974",
+        "type": "inject",
+        "z": "e9b9889e.0f6988",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "295c6034.f4d03"
+            ]
+        ]
+    },
+    {
+        "id": "55accb23.d146e4",
+        "type": "http request",
+        "z": "e9b9889e.0f6988",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "query",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "3c08899c.af5f16"
+            ]
+        ]
+    },
+    {
+        "id": "33d45f07.2e8e7",
+        "type": "inject",
+        "z": "e9b9889e.0f6988",
+        "name": "On Start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "ee090777.18d898"
+            ]
+        ]
+    },
+    {
+        "id": "ee090777.18d898",
+        "type": "change",
+        "z": "e9b9889e.0f6988",
+        "name": "Configuration",
+        "rules": [
+            {
+                "t": "set",
+                "p": "bvs",
+                "pt": "flow",
+                "to": "{\"credentials\":{\"username\":\"kbbvs\",\"password\":\"33bBa6c7ead53E54f0983fc412df31C3!\"},\"endpoint\":\"/api/get-token\"}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "serasa",
+                "pt": "flow",
+                "to": "{\"credentials\":{\"username\":\"kbserasa\",\"password\":\"581e52B63bc83fAa9ad34e9b7bD9199e#\"},\"endpoint\":\"/api/get-token\"}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c08899c.af5f16",
+        "type": "switch",
+        "z": "e9b9889e.0f6988",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 180,
+        "wires": [
+            [
+                "845e40bc.dea12"
+            ],
+            [
+                "b160eb32.ac2dd8"
+            ]
+        ],
+        "outputLabels": [
+            "200",
+            "Error"
+        ]
+    },
+    {
+        "id": "e21c0d15.4ac3d",
+        "type": "inject",
+        "z": "81973c97.e573",
+        "name": "On Start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "d51c0683.1ea088"
+            ]
+        ]
+    },
+    {
+        "id": "d51c0683.1ea088",
+        "type": "change",
+        "z": "81973c97.e573",
+        "name": "Bureaus",
+        "rules": [
+            {
+                "t": "set",
+                "p": "bureaus",
+                "pt": "global",
+                "to": "{\"bvs\":{\"ip\":\"10.50.5.242\",\"host\":\"koral-bvs.koin.internal\"},\"serasa\":{\"ip\":\"10.50.5.242\",\"host\":\"koral-serasa.koin.internal\"}}",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "746fbc46.326de4",
+        "type": "change",
+        "z": "e9b9889e.0f6988",
+        "name": "Setup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "$.conf.ip & $.conf.endpoint",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "conf.credentials",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Host",
+                "pt": "msg",
+                "to": "conf.host",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Accept",
+                "pt": "msg",
+                "to": "*/*",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "requestTimeout",
+                "pt": "msg",
+                "to": "5000",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "55accb23.d146e4"
+            ]
+        ]
+    },
+    {
+        "id": "295c6034.f4d03",
+        "type": "function",
+        "z": "e9b9889e.0f6988",
+        "name": "Gera chamadas",
+        "func": "bureaus=flow.keys().map(x =>{\n    return {\n        bureauKey:x,\n        conf: {...global.get('bureaus')[x], ...flow.get(x)}\n    }\n});\nreturn [bureaus];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 180,
+        "wires": [
+            [
+                "746fbc46.326de4"
+            ]
+        ]
+    },
+    {
+        "id": "845e40bc.dea12",
+        "type": "function",
+        "z": "e9b9889e.0f6988",
+        "name": "Grava Tokens",
+        "func": "let bureaus = global.get('bureaus');\nbureaus[msg.bureauKey].authorization=msg.payload;\nglobal.set('bureaus',bureaus);\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1060,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b160eb32.ac2dd8",
+        "type": "debug",
+        "z": "e9b9889e.0f6988",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ca3d6ba9.e3ebd8",
+        "type": "slack",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "channelURL": "https://hooks.slack.com/services/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",
+        "username": "",
+        "emojiIcon": "",
+        "channel": "",
+        "x": 660,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "2d4fce1b.a95e92",
+        "type": "inject",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 720,
+        "wires": [
+            [
+                "e62fac02.d4c45"
+            ]
+        ]
+    },
+    {
+        "id": "e62fac02.d4c45",
+        "type": "change",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Olá do KDE V3",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 720,
+        "wires": [
+            [
+                "ca3d6ba9.e3ebd8",
+                "d77947fb.085de8"
+            ]
+        ]
+    },
+    {
+        "id": "5cb473fa.97a7fc",
+        "type": "subflow:6f5633be.6bb87c",
+        "z": "75970f74.ba2f6",
+        "name": "",
+        "x": 620,
+        "y": 380,
+        "wires": [
+            [
+                "a01888f9.b274d8"
+            ],
+            [
+                "2aae413.53d74be"
+            ]
+        ]
+    },
+    {
+        "id": "bce67bb8.4fcf48",
+        "type": "change",
+        "z": "75970f74.ba2f6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "apiConf",
+                "pt": "msg",
+                "to": "bureaus.bvs",
+                "tot": "global"
+            },
+            {
+                "t": "set",
+                "p": "apiConf.endpoint",
+                "pt": "msg",
+                "to": "/api/bvs",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "apiConf.request.cpf",
+                "pt": "msg",
+                "to": "request.variables.CPF",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "apiConf.request.search_bureau",
+                "pt": "msg",
+                "to": "CO",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "5cb473fa.97a7fc"
+            ]
+        ]
+    },
+    {
+        "id": "1d632ba7.13a794",
+        "type": "change",
+        "z": "6f5633be.6bb87c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "apiConf.request",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "53772a1a.ae67e4"
+            ]
+        ]
+    },
+    {
+        "id": "53772a1a.ae67e4",
+        "type": "change",
+        "z": "6f5633be.6bb87c",
+        "name": "Setup",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "$.apiConf.ip & $.apiConf.endpoint",
+                "tot": "jsonata"
+            },
+            {
+                "t": "delete",
+                "p": "headers",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Host",
+                "pt": "msg",
+                "to": "apiConf.host",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "headers.Accept",
+                "pt": "msg",
+                "to": "*/*",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "requestTimeout",
+                "pt": "msg",
+                "to": "5000",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "headers.Authorization",
+                "pt": "msg",
+                "to": "apiConf.authorization",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "apiTimer",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "865e27c4.867ab8"
+            ]
+        ]
+    },
+    {
+        "id": "865e27c4.867ab8",
+        "type": "http request",
+        "z": "6f5633be.6bb87c",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "query",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 750,
+        "y": 100,
+        "wires": [
+            [
+                "9a6c4dbb.fbd2b"
+            ]
+        ]
+    },
+    {
+        "id": "41e7a7a8.60f618",
+        "type": "switch",
+        "z": "6f5633be.6bb87c",
+        "name": "",
+        "property": "statusCode",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "200",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1150,
+        "y": 100,
+        "wires": [
+            [],
+            [
+                "f43887ee.b8c958"
+            ]
+        ],
+        "outputLabels": [
+            "200",
+            "Error"
+        ]
+    },
+    {
+        "id": "f43887ee.b8c958",
+        "type": "debug",
+        "z": "6f5633be.6bb87c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1360,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8f8ce070.e84db",
+        "type": "subflow:75970f74.ba2f6",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "env": [],
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "1ba0d62b.9052ba"
+            ]
+        ]
+    },
+    {
+        "id": "3185aee6.aa0c92",
+        "type": "change",
+        "z": "8b0664b4.748478",
+        "g": "dbaaa391.8efa3",
+        "name": "End Timer",
+        "rules": [
+            {
+                "t": "set",
+                "p": "endTimer",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload.timer",
+                "pt": "msg",
+                "to": "$.endTimer - $.timer",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 500,
+        "wires": [
+            [
+                "77891a85.5df814"
+            ]
+        ]
+    },
+    {
+        "id": "4666e09.fe2072",
+        "type": "change",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "request",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 100,
+        "wires": [
+            [
+                "8f8ce070.e84db"
+            ]
+        ]
+    },
+    {
+        "id": "77891a85.5df814",
+        "type": "http response",
+        "z": "8b0664b4.748478",
+        "g": "dbaaa391.8efa3",
+        "name": "HTTP Response 200",
+        "statusCode": "",
+        "headers": {},
+        "x": 740,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6e2c343c.18c67c",
+        "type": "change",
+        "z": "8b0664b4.748478",
+        "name": "Start Timer",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timer",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "4666e09.fe2072"
+            ]
+        ]
+    },
+    {
+        "id": "4a67c0a8.3b5de",
+        "type": "http in",
+        "z": "8b0664b4.748478",
+        "name": "First_Eval",
+        "url": "/first_eval",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 100,
+        "wires": [
+            [
+                "6e2c343c.18c67c"
+            ]
+        ]
+    },
+    {
+        "id": "1ba0d62b.9052ba",
+        "type": "change",
+        "z": "8b0664b4.748478",
+        "g": "dbaaa391.8efa3",
+        "name": "",
+        "rules": [
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.response",
+                "pt": "msg",
+                "to": "response",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload.request",
+                "pt": "msg",
+                "to": "request",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 160,
+        "y": 500,
+        "wires": [
+            [
+                "3185aee6.aa0c92"
+            ]
+        ]
+    },
+    {
+        "id": "a01888f9.b274d8",
+        "type": "change",
+        "z": "75970f74.ba2f6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "response.bureaus.bvs.score",
+                "pt": "msg",
+                "to": "$number(payload.bvs.score)",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "response.bureaus.bvs.responseId",
+                "pt": "msg",
+                "to": "payload.response_id",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "response.bureaus.bvs.calltime",
+                "pt": "msg",
+                "to": "apiTimer",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "response.bureaus.bvs.cache",
+                "pt": "msg",
+                "to": "payload.bvs_cache='S'",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a6c4dbb.fbd2b",
+        "type": "change",
+        "z": "6f5633be.6bb87c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "apiTimer",
+                "pt": "msg",
+                "to": "$millis()-apiTimer",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 970,
+        "y": 100,
+        "wires": [
+            [
+                "41e7a7a8.60f618"
+            ]
+        ]
+    },
+    {
+        "id": "686a39ef.f5ff28",
+        "type": "status",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "scope": null,
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "337a4958.116856"
+            ]
+        ]
+    },
+    {
+        "id": "337a4958.116856",
+        "type": "debug",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2aae413.53d74be",
+        "type": "change",
+        "z": "75970f74.ba2f6",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "response.bureaus.bvs.score",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "response.bureaus.bvs.calltime",
+                "pt": "msg",
+                "to": "apiTimer",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f69fd905.bfe808",
+        "type": "comment",
+        "z": "75970f74.ba2f6",
+        "name": "",
+        "info": "Interpreta a resposta",
+        "x": 850,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d77947fb.085de8",
+        "type": "slack",
+        "z": "8b0664b4.748478",
+        "name": "",
+        "channelURL": "\thttps://hooks.slack.com/services/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",
+        "username": "",
+        "emojiIcon": "",
+        "channel": "",
+        "x": 650,
+        "y": 780,
+        "wires": []
+    }
+]
